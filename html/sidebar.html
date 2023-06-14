@@ -1,0 +1,194 @@
+{% load humanize %}
+<!-- sidebar @s -->
+<div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+        <div class="nk-sidebar-brand">
+            <a href="{% url 'home' %}" class="logo-link nk-sidebar-logo">
+                <img class="logo-light logo-img" src="/assets/images/logo.png" srcset="/assets/images/logo2x.png 2x" alt="logo">
+                <img class="logo-dark logo-img" src="/assets/images/logo-dark.png" srcset="/assets/images/logo-dark2x.png 2x" alt="logo-dark">
+                <span class="nio-version">GATE</span>
+            </a>
+        </div>
+        <div class="nk-menu-trigger me-n2">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+        </div>
+    </div><!-- .nk-sidebar-element -->
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-body" data-simplebar>
+            <div class="nk-sidebar-content">
+                <div class="nk-sidebar-widget d-none d-xl-block">
+                    <div class="user-account-info between-center">
+                        <div class="user-account-main">
+                            <h6 class="overline-title-alt">Total Balance</h6>
+                            <div class="user-balance"> {{user.amount|intcomma}} <small class="currency">USD</small></div>
+                            <div class="user-account-label">
+                                {% comment %} <span class="sub-text">Account Type: {{user.account_type}}</span> {% endcomment %}
+                            </div>
+                        </div>
+                        {% comment %} <a href="#" class="btn btn-white btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a> {% endcomment %}
+                    </div>
+                    <ul class="user-account-data gy-1">
+                        <li>
+                            <div class="user-account-label">
+                                <span class="overline-title-alt">Account Type: </span>
+                            </div>
+                            <div class="user-account-value">
+                                <span class="sub-title text-base">{{user.account_type}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                    {% comment %} <div class="user-account-actions">
+                        <ul class="g-3">
+                            <li><a href="html/loan/loan-details.html" class="btn btn-lg btn-primary"><span>Details</span></a></li>
+                            <li><a href="html/loan/apply-application.html" class="btn btn-lg btn-outline-primary"><span>Apply Loan</span></a></li>
+                        </ul>
+                    </div> {% endcomment %}
+                </div><!-- .nk-sidebar-widget -->
+                <div class="nk-sidebar-widget nk-sidebar-widget-full d-xl-none pt-0">
+                    <a class="nk-profile-toggle toggle-expand" data-target="sidebarProfile" href="#">
+                        <div class="user-card-wrap">
+                            <div class="user-card">
+                                <div class="user-avatar">
+                                    <img src="{{user.photo.url}}" class="img-fluid">
+                                    {% comment %} <span>{{user.first_name.0|upper}}{{user.last_name.0|upper}}</span> {% endcomment %}
+                                </div>
+                                <div class="user-info">
+                                    <span class="lead-text">{{user.first_name}} {{user.last_name}}</span>
+                                    <span class="sub-text">{{user.email}}</span>
+                                </div>
+                                <div class="user-action">
+                                    <em class="icon ni ni-chevron-down"></em>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="nk-profile-content toggle-expand-content" data-content="sidebarProfile">
+                        <div class="user-account-info between-center">
+                            <div class="user-account-main">
+                                <h6 class="overline-title-alt">Total Balance</h6>
+                                <div class="user-balance">{{user.amount|intword}} <small class="currency currency-btc">USD</small></div>
+                                <div class="user-account-label">
+                                    {% comment %} <span class="sub-text">Account Type: {{user.account_type}}</span> {% endcomment %}
+                                </div>
+                            </div>
+                            {% comment %} <a href="#" class="btn btn-icon btn-light"><em class="icon ni ni-line-chart"></em></a> {% endcomment %}
+                        </div>
+                        <ul class="user-account-data">
+                            <li>
+                                <div class="user-account-label">
+                                    <span class="sub-text">Account Type: </span>
+                                </div>
+                                <div class="user-account-value">
+                                    <span class="sub-text text-base">{{user.account_type}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                        {% comment %} <ul class="user-account-links">
+                            <li><a href="html/loan/loan-history.html" class="link"><span>Details</span> <em class="icon ni ni-wallet-out"></em></a></li>
+                            <li><a href="html/loan/apply-application.html" class="link"><span>Apply Loan</span> <em class="icon ni ni-wallet-in"></em></a></li>
+                        </ul> {% endcomment %}
+                        <ul class="link-list">
+                            <li><a href="{% url 'logout' %}"><em class="icon ni ni-signout"></em><span>Log Out</span></a></li>
+                        </ul>
+                    </div>
+                </div><!-- .nk-sidebar-widget -->
+                <div class="nk-sidebar-menu">
+                    <!-- Menu -->
+                    <ul class="nk-menu">
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Menu</h6>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'home' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                <span class="nk-menu-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'profile' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-user-alt"></em></span>
+                                <span class="nk-menu-text">My Profile</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'account' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-user-fill-c"></em></span>
+                                <span class="nk-menu-text">Account Details</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'transactions' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-swap"></em></span>
+                                <span class="nk-menu-text">Transactions</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Fund Transfer</h6>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'inter' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-sign-bgp-alt"></em></span>
+                                <span class="nk-menu-text">Inter-Bank</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'other' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-coin-alt"></em></span>
+                                <span class="nk-menu-text">Other Bank</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'transfer' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-master-card"></em></span>
+                                <span class="nk-menu-text">Make Transfer</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Transactions</h6>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'withdrawal' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-calc"></em></span>
+                                <span class="nk-menu-text">Withdrawal</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'deposit' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>
+                                <span class="nk-menu-text">Deposit</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'loan' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-view-col2"></em></span>
+                                <span class="nk-menu-text">Loans</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Done?</h6>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'logout' %}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                <span class="nk-menu-text">Logout</span>
+                            </a>
+                        </li>
+                    </ul><!-- .nk-menu -->
+                </div><!-- .nk-sidebar-menu -->
+                <div class="nk-sidebar-footer">
+                    <ul class="nk-menu nk-menu-footer">
+                        {% comment %} <li class="nk-menu-item">
+                            <a href="#" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-help-alt"></em></span>
+                                <span class="nk-menu-text">Support</span>
+                            </a>
+                        </li> {% endcomment %}
+                    </ul><!-- .nk-footer-menu -->
+                </div><!-- .nk-sidebar-footer -->
+            </div><!-- .nk-sidebar-content -->
+        </div><!-- .nk-sidebar-body -->
+    </div><!-- .nk-sidebar-element -->
+</div>
+<!-- sidebar @e -->

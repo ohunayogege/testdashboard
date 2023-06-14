@@ -1,0 +1,15 @@
+asgiref
+certifi
+charset-normalizer
+cloudinary
+Django
+gunicorn
+idna
+psycopg2
+python-decouple
+requests
+six
+sqlparse
+tzdata
+urllib3
+whitenoise

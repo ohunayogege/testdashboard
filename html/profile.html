@@ -1,0 +1,153 @@
+{% extends "app.html" %}
+{% load humanize %}
+{% block content %}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <div class="nk-block-head-sub"><span>Account Setting</span></div>
+                    <h2 class="nk-block-title fw-normal">My Profile</h2>
+                    <div class="nk-block-des">
+                        <p>You have view your own profile. <span class="text-primary"><em class="icon ni ni-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right"></em></span></p>
+                    </div>
+                </div>
+            </div><!-- .nk-block-head -->
+            <div class="nk-block">
+                <div class="card card-bordered">
+                    <div class="card-aside-wrap">
+                        <div class="card-content">
+                            <div class="card-inner card-inner-lg">
+                                <div class="nk-block">
+                                    <div class="nk-block-head">
+                                        <h4 class="title">Personal Information</h4>
+                                        <p>Basic info, like your name and address, that you use on our Platform.</p>
+                                    </div><!-- .nk-block-head -->
+                                    <div class="profile-ud-list pt-2">
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Gender</span>
+                                                <span class="profile-ud-value">{{user.gender}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">First Name</span>
+                                                <span class="profile-ud-value">{{user.first_name}}</span>
+                                            </div>
+                                        </div>
+                                        {% comment %} <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Date of Birth</span>
+                                                <span class="profile-ud-value">10 Aug, 1980</span>
+                                            </div>
+                                        </div> {% endcomment %}
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Surname</span>
+                                                <span class="profile-ud-value"> {{user.last_name}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Mobile Number</span>
+                                                <span class="profile-ud-value">{{user.mobile}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Email Address</span>
+                                                <span class="profile-ud-value">{{user.email}}</span>
+                                            </div>
+                                        </div>
+                                    </div><!-- .profile-ud-list -->
+                                </div><!-- .nk-block -->
+                                <div class="nk-block">
+                                    <div class="nk-block-head nk-block-head-line">
+                                        <h6 class="title overline-title text-base">Additional Information</h6>
+                                    </div><!-- .nk-block-head -->
+                                    <div class="profile-ud-list">
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Last Login Date</span>
+                                                <span class="profile-ud-value">{{user.last_login}}</span>
+                                            </div>
+                                        </div>
+                                        {% comment %} <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Reg Method</span>
+                                                <span class="profile-ud-value">Email</span>
+                                            </div>
+                                        </div> {% endcomment %}
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Country</span>
+                                                <span class="profile-ud-value">{{user.country}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Nationality</span>
+                                                <span class="profile-ud-value">{{user.country}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-ud-item">
+                                            <div class="profile-ud wider">
+                                                <span class="profile-ud-label">Address</span>
+                                                <span class="profile-ud-value">{{user.address}}, {{user.city}}, {{user.state}}, {{user.zip_code}}</span>
+                                            </div>
+                                        </div>
+                                    </div><!-- .profile-ud-list -->
+                                </div><!-- .nk-block -->
+                                <div class="nk-divider divider md"></div>
+                            </div><!-- .card-inner -->
+                        </div>
+                        <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+                            <div class="card-inner-group" data-simplebar>
+                                <div class="card-inner">
+                                    <div class="user-card">
+                                        <div class="user-avatar bg-default">
+                                            <span>
+                                                <img src="{{user.photo.url}}" class="img-fluid">
+                                            </span>
+                                        </div>
+                                        <div class="user-info">
+                                            <span class="lead-text">{{user.first_name}} {{user.last_name}}</span>
+                                            <span class="sub-text">{{user.email|lower}}</span>
+                                        </div>
+                                        {% comment %} <div class="user-action">
+                                            <div class="dropdown">
+                                                <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown" href="#"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li><a href="#"><em class="icon ni ni-camera-fill"></em><span>Change Photo</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div> {% endcomment %}
+                                    </div><!-- .user-card -->
+                                </div><!-- .card-inner -->
+                                <div class="card-inner">
+                                    <div class="user-account-info py-0">
+                                        <h6 class="overline-title-alt">Total Balance</h6>
+                                        <div class="user-balance">{{user.amount|intcomma}} <small class="currency currency-btc">USD</small></div>
+                                        <div class="user-account-label">
+                                            <span class="sub-text">Account Status: {{user.account_status}}</span>
+                                        </div>
+                                    </div>
+                                </div><!-- .card-inner -->
+                                <div class="card-inner p-0">
+                                    <ul class="link-list-menu">
+                                        <li><a class="active" href="{% url 'profile' %}#"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
+                                        <li><a href="{% url 'account' %}"><em class="icon ni ni-bell-fill"></em><span>Account Details</span></a></li>
+                                    </ul>
+                                </div><!-- .card-inner -->
+                            </div><!-- .card-inner-group -->
+                        </div><!-- card-aside -->
+                    </div><!-- .card-aside-wrap -->
+                </div><!-- .card -->
+            </div><!-- .nk-block -->
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,196 @@
+{% extends "app.html" %}
+{% load humanize %}
+{% block content %}
+<!-- content @s -->
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-lg">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Other Transfer</h3>
+                        <div class="nk-block-des text-soft">
+                            <p class="text-soft">Other Transfer</p>
+                        </div>
+                    </div><!-- .nk-block-head-content -->
+                </div><!-- .nk-block-between -->
+            </div><!-- .nk-block-head -->
+            <div class="nk-block">
+                <div class="card card-bordered card-stretch">
+                    <div class="card-inner">
+                        <form class="inter-bank">
+                            {% csrf_token %}
+                            <input type="hidden" class="form-control" name="action" value="get_data">
+                            <div class="row g-gs">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="name">Receiver's Bank Name</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="name" placeholder="e.g. Gate One Bank" name="rec_bank_name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="birth-date">Receiver's Account Name</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="profession" placeholder="e.g. Abu Bin Ishtiyak" name="rec_name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="area">Receiver's Account Number</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="area" name="rec_acc_number" placeholder="e.g. {{user.account_number}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="city">Bank Branch Code</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="city" name="swift" placeholder="e.g. {{user.bank_branch_code}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="country">Sender's Email Address</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="country" name="sender_email" value="{{user.email}}" placeholder="e.g. {{user.email}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% comment %} <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Nearest Branch</label>
+                                        <div class="form-control-wrap">
+                                            <select class="form-select js-select2">
+                                                <option value="dhaka">Dhaka</option>
+                                                <option value="ctg">Chittagong</option>
+                                                <option value="chicago">Chicago</option>
+                                                <option value="lahore">Lahore</option>
+                                                <option value="gujrat">Gujarat</option>
+                                                <option value="kerala">Kerala</option>
+                                                <option value="mumbai">Mumbai</option>
+                                                <option value="newyork">New York</option>
+                                                <option value="mexico">New Mexico</option>
+                                                <option value="punjab">Punjab</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> {% endcomment %}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="phone">Amount to Transfer USD($)</label>
+                                        <div class="form-control-wrap">
+                                            <input type="number" class="form-control" name="amount" id="phone" placeholder="e.g. 1484736.64" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="email">Transfer Type</label>
+                                        <div class="form-control-wrap">
+                                            <input type="email" class="form-control" id="email" value="Other Bank Transfer" name="transfer_type" placeholder="e.g. Inter-Bank Transfer" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="profession">Date of Transfer</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" name="transfer_date" class="form-control" value="{{current_date}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="amount">Transfer Description</label>
+                                        <div class="form-control-wrap">
+                                            <textarea name="description" class="form-control" id="amount" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="tenure">Enter Tranfer Pin</label>
+                                        <div class="form-control-wrap">
+                                            <input type="number" class="form-control" name="pin" id="tenure" placeholder="0000" maxlength="4" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" checked="" id="note">
+                                        <label class="custom-control-label" for="note">
+                                            <p>I do hereby admit that all the above information that I have input is true & correct. If any of the above information figured out false or incorrect, I understand & agree that the mistake comes from me. I agree to share my information following the company policy as required.</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button type="submit" class="btn btn-lg btn-primary btn-inter">Continue</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- .card -->
+            </div><!-- .nk-block -->
+        </div>
+    </div>
+</div>
+<!-- content @e -->
+
+<div class="modal fade" id="pinConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pinConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pinConfirmLabel">Confirm Transaction</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="confirm-inter">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" name="action" value="confirm_data">
+            <div class="modal-body">
+                <div class="row g-gs">
+                    <div class="col-md-12 col-xxl-12">
+                        <div class="card card-bordered pricing">
+                            <div class="pricing-head">
+                                <div class="pricing-title">
+                                    <h4 class="card-title title">Confirm Details</h4>
+                                    <p class="sub-text">Please confirm the details below that they are correct before using the below button button.</p>
+                                </div>
+                            </div>
+                            <div class="pricing-body">
+                                <ul class="pricing-features">
+                                    <li><span class="w-50">Account Name:</span> - <span class="ms-auto account-name"></span></li>
+                                    <li><span class="w-50">Account Number:</span> - <span class="ms-auto account-number"></span></li>
+                                    <li><span class="w-50">Amount:</span> - <span class="ms-auto account-amount"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="profession">Enter OTP</label>
+                            <div class="form-control-wrap">
+                                <input type="text" name="otp" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-inter-go">Proceed</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
