@@ -177,6 +177,7 @@ def InterBank(request):
 
 @login_required(login_url='login')
 def OtherBank(request):
+    user = request.user
     if is_ajax(request):
         action = request.POST['action']
         if action == "get_data":
@@ -256,6 +257,7 @@ def OtherBank(request):
 
 @login_required(login_url='login')
 def MakeTransfer(request):
+    user = request.user
     if is_ajax(request):
         action = request.POST['action']
         if action == "get_data":
